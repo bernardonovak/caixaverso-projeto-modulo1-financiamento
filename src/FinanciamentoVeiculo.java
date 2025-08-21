@@ -8,6 +8,8 @@ public class FinanciamentoVeiculo extends Financiamento {
 
     public FinanciamentoVeiculo(Cliente cliente, double valorFinanciamento) {
         super(cliente, valorFinanciamento);
+        qtdeParcelas = maximoParcelas;
+        avaliar();
     }
 
     @Override
@@ -19,16 +21,18 @@ public class FinanciamentoVeiculo extends Financiamento {
 
     private boolean aprovarIdadeMinima(){
         if(cliente.getIdade() < idadeMinima){
-            this.motivoReprovacao = "Idade mínima para financiamento de imóvel é 21 anos.";
+            motivoReprovacao = "Idade mínima para financiamento de imóvel é 21 anos.";
             return false;
         }
         return true;
     }
 
     private boolean aprovarRendaMensal(){
-        double valorEntrada = valorBem * porcentagemEntrada / 100;
-        double valorFinanciamento = valorBem - valorEntrada;
-        double valorParcela = valorFinanciamento / maximoParcelas;
+        entradaMinima = valorBem * porcentagemEntrada / 100;
+        valorFinanciado = valorBem - entradaMinima;
+        double jurosTotal = valorFinanciado * (jurosMes / 100) * qtdeParcelas;
+        double valorFinal = valorFinanciado + jurosTotal;
+        valorParcela = valorFinal / maximoParcelas;
         if(valorParcela > (cliente.getRendaMensal() * porcentagemLimiteParcela / 100 )){
             motivoReprovacao = "Valor da parcela excede 30% da renda mensal.";
             return false;
