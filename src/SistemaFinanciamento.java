@@ -13,13 +13,7 @@ public class SistemaFinanciamento {
         try {
             int opcao;
             do {
-                System.out.println("=== MENU PRINCIPAL ===");
-                System.out.println("1 - Financiamento de Imóvel");
-                System.out.println("2 - Financiamento de Veículo");
-                System.out.println("3 - Listar Financiamentos de Imóveis");
-                System.out.println("4 - Listar Financiamentos de Veículos");
-                System.out.println("0 - Sair");
-                System.out.println("Escolha uma opção: ");
+                exibirMenuPrincipal();
                 opcao = sc.nextInt();
 
                 direcionarOpcaoEscohida(opcao);
@@ -106,4 +100,15 @@ public class SistemaFinanciamento {
                 break;
         }
     }
+
+    public static void exibirMenuPrincipal(){
+        System.out.println("=== MENU PRINCIPAL ===");
+        System.out.println("1 - Financiamento de Imóvel");
+        System.out.println("2 - Financiamento de Veículo");
+        System.out.println("3 - Listar Financiamentos de Imóveis");
+        System.out.println("4 - Listar Financiamentos de Veículos");
+        System.out.println("0 - Sair");
+        System.out.println("Escolha uma opção: ");
+    }
+
 }
