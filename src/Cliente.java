@@ -4,9 +4,6 @@ public class Cliente {
     private int idade;
     private double rendaMensal;
 
-    public Cliente() {
-    }
-
     public Cliente(String nome, int idade, double rendaMensal) {
         this.nome = nome;
         this.idade = idade;
@@ -17,23 +14,15 @@ public class Cliente {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public int getIdade() {
         return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
     }
 
     public double getRendaMensal() {
         return rendaMensal;
     }
 
-    public void setRendaMensal(double rendaMensal) {
-        this.rendaMensal = rendaMensal;
+    public void imprimirInformacoesCliente(){
+        System.out.printf("Nome do Cliente: %s %n", nome);
     }
 }

@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class SistemaFinanciamento {
 
     private static Scanner sc = new Scanner(System.in);
-    private static List<Financiamento> financiamentosImovel = new ArrayList<>();
-    private static List<Financiamento> financiamentosVeiculo = new ArrayList<>();
+    private static List<FinanciamentoImovel> financiamentosImovel = new ArrayList<>();
+    private static List<FinanciamentoVeiculo> financiamentosVeiculo = new ArrayList<>();
 
     public static void main(String[] args) {
         try {
@@ -21,6 +21,16 @@ public class SistemaFinanciamento {
         } catch (InputMismatchException e) {
             System.out.println("Opção inválida!");
         }
+    }
+
+    public static void exibirMenuPrincipal(){
+        System.out.println("=== MENU PRINCIPAL ===");
+        System.out.println("1 - Financiamento de Imóvel");
+        System.out.println("2 - Financiamento de Veículo");
+        System.out.println("3 - Listar Financiamentos de Imóveis");
+        System.out.println("4 - Listar Financiamentos de Veículos");
+        System.out.println("0 - Sair");
+        System.out.println("Escolha uma opção: ");
     }
 
     public static void informarNovoFinanciamento(TipoFinanciamento tipoFinanciamento){
@@ -46,37 +56,7 @@ public class SistemaFinanciamento {
             financiamentosVeiculo.add((FinanciamentoVeiculo) financiamento);
         }
 
-        imprimirResultadoFinanciamento(financiamento);
-        System.out.println();
-    }
-
-    public static void imprimirResultadoFinanciamento(Financiamento financiamento){
-
-        if(financiamento.isAprovado()){
-            System.out.println("Financiamento Aprovado!");
-            System.out.printf("Entrada Mínima: R$ %.2f %n", financiamento.getEntradaMinima() );
-            System.out.printf("Valor Financiado: R$ %.2f %n", financiamento.getValorFinanciado() );
-            System.out.printf("Número de parcelas: %d %n", financiamento.getQtdeParcelas());
-            System.out.printf("Valor da parcela: R$ %.2f %n", financiamento.getValorParcela() );
-        }else{
-            System.out.println("Financiamento Reprovado!");
-            System.out.printf("Motivo: %s %n", financiamento.getMotivoReprovacao());
-        }
-    }
-
-    public static void imprimirCliente(Cliente cliente){
-        System.out.printf("Nome do Cliente: %s %n", cliente.getNome());
-    }
-
-    public static void imprimirFinanciamentos(List<Financiamento> financiamentos){
-        System.out.println("=== Lista de Financiamento ===");
-        for (Financiamento fi : financiamentos){
-            imprimirCliente(fi.getCliente());
-            System.out.printf("Valor do Bem: R$ %.2f %n", fi.getValorBem());
-            imprimirResultadoFinanciamento(fi);
-            System.out.println();
-        }
-        System.out.println("---------------------");
+        financiamento.imprimirResultado();
     }
 
     public static void direcionarOpcaoEscohida(int opcao){
@@ -91,24 +71,33 @@ public class SistemaFinanciamento {
                 informarNovoFinanciamento(TipoFinanciamento.VEICULO);
                 break;
             case 3:
-                imprimirFinanciamentos(financiamentosImovel);
+                imprimirFinanciamentosImovel();
                 break;
             case 4:
-                imprimirFinanciamentos(financiamentosVeiculo);
+                imprimirFinanciamentosVeiculo();
+                break;
             default:
                 System.out.println("Opção Inválida!");
                 break;
         }
     }
 
-    public static void exibirMenuPrincipal(){
-        System.out.println("=== MENU PRINCIPAL ===");
-        System.out.println("1 - Financiamento de Imóvel");
-        System.out.println("2 - Financiamento de Veículo");
-        System.out.println("3 - Listar Financiamentos de Imóveis");
-        System.out.println("4 - Listar Financiamentos de Veículos");
-        System.out.println("0 - Sair");
-        System.out.println("Escolha uma opção: ");
+    public static void imprimirFinanciamentosImovel(){
+        System.out.println("=== FINANCIAMENTOS DE IMÓVEL ===");
+        for (Financiamento fi : financiamentosImovel){
+            fi.exibirFinanciamentoDetalhado();
+        }
+        System.out.println("=== FIM DA LISTA ===");
+        System.out.println();
+    }
+
+    public static void imprimirFinanciamentosVeiculo(){
+        System.out.println("=== FINANCIAMENTOS DE VEÍCULO ===");
+        for (Financiamento fi : financiamentosVeiculo){
+            fi.exibirFinanciamentoDetalhado();
+        }
+        System.out.println("=== FIM DA LISTA ===");
+        System.out.println();
     }
 
 }
