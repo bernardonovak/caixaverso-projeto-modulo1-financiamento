@@ -34,7 +34,7 @@ public abstract class Financiamento {
         return motivoReprovacao;
     }
 
-    public double getQtdeParcelas() {
+    public int getQtdeParcelas() {
         return qtdeParcelas;
     }
 

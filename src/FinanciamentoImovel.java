@@ -21,7 +21,7 @@ public class FinanciamentoImovel extends Financiamento {
 
     private boolean aprovarIdadeMinima(){
         if(cliente.getIdade() < idadeMinima){
-            motivoReprovacao = "Idade mínima para financiamento de imóvel é 21 anos.";
+            motivoReprovacao = "Idade mínima para financiamento de imóvel é " + idadeMinima + " anos.";
             return false;
         }
         return true;

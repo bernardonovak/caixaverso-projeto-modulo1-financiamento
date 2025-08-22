@@ -22,22 +22,7 @@ public class SistemaFinanciamento {
                 System.out.println("Escolha uma opção: ");
                 opcao = sc.nextInt();
 
-                switch (opcao) {
-                    case 1:
-                        informarNovoFinanciamento(TipoFinanciamento.IMOVEL);
-                        break;
-                    case 2:
-                        informarNovoFinanciamento(TipoFinanciamento.VEICULO);
-                        break;
-                    case 3:
-                        imprimirFinanciamentos(financiamentosImovel);
-                        break;
-                    case 4:
-                        imprimirFinanciamentos(financiamentosVeiculo);
-                    default:
-                        System.out.println("Opção Inválida!");
-                        break;
-                }
+                direcionarOpcaoEscohida(opcao);
             } while (opcao != 0);
         } catch (InputMismatchException e) {
             System.out.println("Opção inválida!");
@@ -98,5 +83,27 @@ public class SistemaFinanciamento {
             System.out.println();
         }
         System.out.println("---------------------");
+    }
+
+    public static void direcionarOpcaoEscohida(int opcao){
+        switch (opcao) {
+            case 0:
+                System.out.println("Encerrando programa de Financiamento.. Obrigado!");
+                break;
+            case 1:
+                informarNovoFinanciamento(TipoFinanciamento.IMOVEL);
+                break;
+            case 2:
+                informarNovoFinanciamento(TipoFinanciamento.VEICULO);
+                break;
+            case 3:
+                imprimirFinanciamentos(financiamentosImovel);
+                break;
+            case 4:
+                imprimirFinanciamentos(financiamentosVeiculo);
+            default:
+                System.out.println("Opção Inválida!");
+                break;
+        }
     }
 }
